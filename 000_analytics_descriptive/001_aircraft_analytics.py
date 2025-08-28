@@ -33,17 +33,20 @@ aircraft_ids = ['A1B2C3', 'D4E5F6']
 
 
 # Simulate telemetry
+num_rows = 2
 data = {
-    'Timestamp': [timestamp] * 2,
-    'ICAO': aircraft_ids,
-    'Altitude_ft': np.random.normal(loc=35000, scale=200, size=2).round(),
-    'GroundSpeed_kts': np.random.normal(loc=470, scale=15, size=2).round(1),
-    'VerticalRate_fpm': np.random.choice([0, 64, -64, 128, -128], size=2),
-    'PositionConfidence': np.random.uniform(0.92, 0.99, size=2).round(3)
+    'Timestamp': [timestamp] * num_rows,
+    'ICAO': np.random.choice(aircraft_ids, size=num_rows),
+    'Altitude_ft': np.random.normal(loc=1, scale=10, size=num_rows).round(),
+    'GroundSpeed_kts': np.random.normal(loc=470, scale=15, size=num_rows).round(1),
+    'VerticalRate_fpm': np.random.choice([0, 64, -64, 128, -128], size=num_rows),
+    'PositionConfidence': np.random.uniform(0.92, 0.99, size=num_rows).round(3)
 }
+
 
 # Create DataFrame
 df = pd.DataFrame(data)
+
 
 # Diagnostic function
 def describe_column(series, label="Metric"):
