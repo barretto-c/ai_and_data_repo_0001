@@ -74,7 +74,7 @@ def run_diagnostics(df, columns_with_labels):
         if col in df.columns:
             describe_column(df[col], label=label)
         else:
-            print(f"⚠️ Column '{col}' not found in DataFrame.")
+            print(f"WARNINGv - Column '{col}' not found in DataFrame.")
 
 # Define columns to analyze
 columns_to_describe = {
@@ -85,11 +85,12 @@ columns_to_describe = {
 }
 
 # Display raw data
-print("🛫 Simulated ADS-B Snapshot:\n")
+print("Simulated ADS-B Snapshot:\n")
 print(df)
 
 # Run diagnostics
 run_diagnostics(df, columns_to_describe)
+
 
 # Visualize Altitude and Ground Speed
 plt.figure(figsize=(8, 5))
