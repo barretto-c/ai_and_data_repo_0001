@@ -1,3 +1,6 @@
+# Title: Predict Candidate Match Score
+# This is considered Machine Learning with NLP
+# This is NOT Artificial Intelligence with NLP
 # calculate candidate match score based on job description and resumes using TF-IDF and cosine similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
