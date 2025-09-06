@@ -1,5 +1,8 @@
 #Usesus VADER (Valence Aware Dictionary and sEntiment Reasoner) for sentiment analysis
 #VADER is specifically attuned to sentiments expressed in social media
+#Optimized for social media and short texts
+#No training required—just plug and play
+
 
 # Scores is a dictionary with keys: 'neg', 'neu', 'pos', and 'compound'
 # 'neg', 'neu', and 'pos' represent the proportion of the text that falls into each category
