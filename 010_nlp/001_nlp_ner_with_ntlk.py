@@ -1,3 +1,6 @@
+#Uses NTLK for Named Entity Recognition (NER)
+#scans a text and identifies entities like people, organizations, locations, dates, etc
+
 import nltk
 import numpy #had to install numpy to get nltk to work
 from nltk.tokenize import word_tokenize
@@ -33,5 +36,5 @@ print("\nNamed Entities:")
 for subtree in ner_tree:
     if hasattr(subtree, 'label'):
         entity = " ".join([token for token, pos in subtree.leaves()])
-        print(f"{entity} → {subtree.label()}")
+        print(f"{entity} = {subtree.label()}")
 
