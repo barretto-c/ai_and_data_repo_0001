@@ -1,0 +1,4 @@
+member_id,membership_type,years_as_member,events_attended,benefits_used,payment_history,engagement_score,age_group,location_type,referrals_made,will_renew,renewal_probability,predicted_renewal
+M008,1,1,2,1,0.6,0.3,2,2,0,0,0.0087078605,0
+M004,0,1,1,1,0.5,0.25,2,0,0,0,0.01188218,0
+M002,0,2,3,2,0.75,0.45,1,1,0,0,0.01814215,0
