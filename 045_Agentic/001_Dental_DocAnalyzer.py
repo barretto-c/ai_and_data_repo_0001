@@ -8,6 +8,9 @@ from pytesseract import image_to_string
 from PIL import Image
 import uvicorn
 
+#Sample call
+# curl -X POST -F "file=@C:045_Agentic/sample_form.png" http://127.0.0.1:8000/analyze
+
 app = FastAPI()
 
 # Initialize NER pipeline (can swap with fine-tuned CDT model)
