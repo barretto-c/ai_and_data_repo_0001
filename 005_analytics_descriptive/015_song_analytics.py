@@ -16,8 +16,9 @@ def get_api_key_from_ssm(parameter_name, region_name='us-east-1'):
     return response['Parameter']['Value']
 
 # Initialize YouTube Data API client
+# Retrieve my Google API key securely from my SSM Account
 API_KEY = get_api_key_from_ssm('/project/env/youtube_only_googleapis_key_001')  # Change parameter name as needed
-
+#API = 'YOUR_API_KEY'
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 print("YouTube Data API client created.")
 # 🎯 List of video IDs for ABBA remakes
@@ -97,4 +98,7 @@ df = pd.DataFrame(video_data)
 df.to_excel('abba_remakes.xlsx', index=False)
 
 print("DataFrame created with video data:")
-print(df)
+print("Columns in DataFrame:", df.columns.tolist())
+print(df.describe())
+print(df[['Title', 'Views']].head())
+print("--")
