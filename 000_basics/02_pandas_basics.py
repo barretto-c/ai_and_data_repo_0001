@@ -3,7 +3,7 @@ import pandas as pd
 print("Pandas Basics Demo using ADSB Signal Data")
 
 # Load ADSB-like data
-file_path = 'AircraftADSBData.xlsx'
+file_path = '..\AircraftADSBData.xlsx'
 data = pd.read_excel(file_path)
 print("Data Loaded from Excel:")
 print("Columns in DataFrame:", data.columns.tolist())
