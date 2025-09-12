@@ -1,3 +1,6 @@
+# Uses 
+Python 3.10.0 and related packages
+
 ## Virtual Environment (Recommended)
 It is recommended to create a virtual environment before installing dependencies:
 
