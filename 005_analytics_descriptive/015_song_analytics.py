@@ -1,6 +1,6 @@
-from googleapiclient.discovery import build
 import pandas as pd
 import boto3
+from googleapiclient.discovery import build
 
 # 🎯 Objective: Fetch and analyze YouTube video data for ABBA remakes
 # Data Source: YouTube Data API
@@ -95,7 +95,7 @@ video_data = [get_video_data(vid) for vid in video_ids]
 
 # 📊 Convert to DataFrame and export to Excel
 df = pd.DataFrame(video_data)
-df.to_excel('abba_remakes.xlsx', index=False)
+df.to_excel('output/abba_remakes.xlsx', index=False)
 
 print("DataFrame created with video data:")
 print("Columns in DataFrame:", df.columns.tolist())

@@ -1,9 +1,9 @@
+# Uses Python 3.10.0
 # Aircraft Analytics 001
 
 This project simulates aircraft telemetry data and provides descriptive statistics for key metrics using Python.
 
 ## Files
-- `aircraft_analytics_001.py`: Main script for simulation and analytics
 - `requirements.txt`: Python dependencies
 
 ## Requirements
