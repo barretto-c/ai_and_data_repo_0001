@@ -250,5 +250,5 @@ for key, value in results_summary.items():
 
 # Export at-risk members for targeted outreach
 at_risk_members.to_csv('at_risk_members.csv', index=False)
-print(f"\n📁 At-risk members list saved to 'at_risk_members.csv'")
-print("📁 Use this file for targeted retention campaigns!")
+print(f"\nAt-risk members list saved to 'at_risk_members.csv'")
+print("Use this file for targeted retention campaigns!")
