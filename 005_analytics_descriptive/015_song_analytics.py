@@ -2,7 +2,7 @@ import pandas as pd
 import boto3
 from googleapiclient.discovery import build
 
-# 🎯 Objective: Fetch and analyze YouTube video data for ABBA remakes
+# Objective: Fetch and analyze YouTube video data for ABBA remakes
 # Data Source: YouTube Data API
 # Setup YouTube Data API client and related key
 # I store the key in AWS SSM Parameter Store for security - replace with your own method if needed
@@ -21,7 +21,7 @@ API_KEY = get_api_key_from_ssm('/project/env/youtube_only_googleapis_key_001')  
 #API = 'YOUR_API_KEY'
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 print("YouTube Data API client created.")
-# 🎯 List of video IDs for ABBA remakes
+# List of video IDs for ABBA remakes
 video_ids = [
     'Dq32mmYUelg',  # Sing it Live - Mamma Mia!
     'DFpW09Z7N98',  # ABBA - Mamma Mia (Live - ABBA Down Under)
@@ -47,6 +47,7 @@ def get_video_data(video_id):
                 'Platform': 'YouTube',
                 'Year': 'N/A',
                 'Views': 0,
+                'Likes': 0,
                 'Performance Type': 'Unknown',
                 'Region': 'Unknown',
                 'Link': f"https://www.youtube.com/watch?v={video_id}"
@@ -59,6 +60,7 @@ def get_video_data(video_id):
             'Platform': 'YouTube',
             'Year': item['snippet']['publishedAt'][:4],
             'Views': int(item['statistics']['viewCount']),
+            'Likes': int(item['statistics'].get('likeCount', 0)),
             'Performance Type': 'Live/Studio',  # You can refine this manually
             'Region': 'Unknown',  # Optional: Add manually or via channel metadata
             'Link': f"https://www.youtube.com/watch?v={video_id}"
@@ -73,6 +75,7 @@ def get_video_data(video_id):
                 'Platform': 'YouTube',
                 'Year': 'N/A',
                 'Views': 0,
+                'Likes': 0,
                 'Performance Type': 'Unknown',
                 'Region': 'Unknown',
                 'Link': f"https://www.youtube.com/watch?v={video_id}"
@@ -85,16 +88,18 @@ def get_video_data(video_id):
                 'Platform': 'YouTube',
                 'Year': 'N/A',
                 'Views': 0,
+                'Likes': 0,
                 'Performance Type': 'Unknown',
                 'Region': 'Unknown',
                 'Link': f"https://www.youtube.com/watch?v={video_id}"
             }
 
-# 📦 Collect data for all videos
+# Collect data for all videos
 video_data = [get_video_data(vid) for vid in video_ids]
 
-# 📊 Convert to DataFrame and export to Excel
+# Convert to DataFrame and export to Excel
 df = pd.DataFrame(video_data)
+df.sort_values(by='Views', ascending=False, inplace=True)
 df.to_excel('output/abba_remakes.xlsx', index=False)
 
 print("DataFrame created with video data:")
