@@ -1,4 +1,8 @@
-# Step 1: Import libraries
+# Prediction of time to respond to a sales opportunity
+# Definition: Time to respond is the duration (in hours) between the initial contact with a sales opportunity and the first meaningful engagement (e.g., a follow-up call or meeting).
+# Definition of Liner Regression: A statistical method that models the relationship between a dependent variable and one or more independent variables by fitting a linear equation to observed data. 
+# It is used for predicting continuous outcomes.
+
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression

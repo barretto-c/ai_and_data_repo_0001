@@ -1,14 +1,25 @@
-# Decision Tree Classifier for Sales Opportunity 
+# Random Forest Classifier for Sales Opportunity 
 # Quality Prediction
-# Using sklearn's DecisionTreeClassifier
+# Using sklearn's RandomForestClassifier
 # This model predicts whether a sales opportunity is "Good" or "Not Good"
 # based on various features in the dataset.
 # The dataset is assumed to be in an Excel file named 'SalesOpportunityDataSet.xlsx'
-# Fore warning: Time_to_Respond seems to be only relevant feature
-# This may lead to overfitting if not handled properly.
+
+# Note to self: Random Forests 
+# Sees to be better than Decision Trees
+# because they reduce overfitting by averaging multiple trees.
+# I tried this and the usage of features seems more balanced.
+# I have more confidence in this model than the decision tree.
+
+# This is also supported by data where all feaature
+# are used
+# # See Data here 
+# 3  Engagement_Score    0.275198
+# 7   Time_to_Respond    0.232535
+# 6       Prior_Deals    0.185275
 
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import LabelEncoder
@@ -37,7 +48,11 @@ y = df['Is_Good_Opportunity'] # Target variable
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 # Train decision tree
-clf = DecisionTreeClassifier(random_state=42)
+
+# Parameters to note:
+# n_estimators: Number of trees in the forest (default 100 is usually good)
+# max_depth: Limits the depth of each tree to prevent overfitting (optional)
+clf = RandomForestClassifier(n_estimators=100, max_depth=3, random_state=42)
 clf.fit(X_train, y_train)
 
 # Predict
@@ -62,7 +77,7 @@ import matplotlib.pyplot as plt
 plt.figure(figsize=(8, 5))
 plt.barh(importance_df['Feature'], importance_df['Importance'])
 plt.xlabel('Importance')
-plt.title('Feature Importances')
+plt.title('Feature Importances (Random Forest)')
 plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.show()
