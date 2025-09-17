@@ -1,9 +1,18 @@
+# Prediction of sales opportunity quality using
+# logistic regression
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
+
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Load dataset
 file_path = '..\SalesOpportunityDataSet.xlsx'
@@ -43,6 +52,7 @@ print(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
 print("Classification Report:")
 print(classification_report(y_test, y_pred, target_names=['Not Good Opportunity', 'Good Opportunity']))
 
+
 # Predict a new sample
 new_sample = pd.DataFrame([{
     'Industry': label_encoders['Industry'].transform(['Finance'])[0],
@@ -60,3 +70,17 @@ predicted_prob = model.predict_proba(new_sample)[:, 1][0]
 predicted_class = model.predict(new_sample)[0]
 print(f"Predicted Probability (Good Opportunity): {predicted_prob:.2f}")
 print(f"Predicted Class: {'Good Opportunity' if predicted_class == 1 else 'Not Good Opportunity'}")
+
+
+# Compute confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+# Plot confusion matrix
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+            xticklabels=['Not Good', 'Good'], 
+            yticklabels=['Not Good', 'Good'])
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix')
+plt.show()
