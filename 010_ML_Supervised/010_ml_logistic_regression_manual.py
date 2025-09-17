@@ -1,5 +1,11 @@
 # Prediction of sales opportunity quality using
 # logistic regression
+# Manual implementation without sklearn
+# This example demonstrates how to implement logistic regression
+# from scratch using NumPy for numerical computations.
+# Note: The only reason to include
+# sklearn here is for the classification report at the end.
+# All other parts are done manually.
 
 import numpy as np
 import pandas as pd
