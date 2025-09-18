@@ -2,6 +2,10 @@ import pandas as pd
 import boto3
 from googleapiclient.discovery import build
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
 # Objective: Fetch and analyze YouTube video data for ABBA remakes
 # Data Source: YouTube Data API
 # Setup YouTube Data API client and related key
@@ -24,6 +28,10 @@ print("YouTube Data API client created.")
 # List of video IDs for ABBA remakes
 video_ids = [
     'Dq32mmYUelg',  # Sing it Live - Mamma Mia!
+    'XP-PmH4xHfU',  # Knowing Me Knowing You – Sing it Live (ABBA cover)
+    'TwkrGQTy_mc',  # The Winner Takes It All – Sing it Live (ABBA cover)
+    'KXi9xfmC-dc',  # Dancing Queen – Sing it Live (ABBA cover)
+    'BdRDE-NAD5I',  # Behind the Sound – The Winner Takes It All (Sing it Live)    
     'DFpW09Z7N98',  # ABBA - Mamma Mia (Live - ABBA Down Under)
     'ipi7ppPUSEs',  # Mamma Mia Medley
     'gbqQb_pmq50',  # Ripley Alexander Audition
@@ -107,3 +115,14 @@ print("Columns in DataFrame:", df.columns.tolist())
 print(df.describe())
 print(df[['Title', 'Views']].head())
 print("--")
+
+# Visualization: Top 5 videos by views
+plt.figure(figsize=(14, 8))
+# top_videos = df.nlargest(5, 'Views')
+top_videos = df
+ax = sns.barplot(x='Views', y='Title', data=top_videos, palette='viridis')
+plt.xscale('log')
+plt.xlabel('Views (log scale)')
+plt.title('Top 5 ABBA Remake Videos by Views (Log Scale)')
+plt.tight_layout()
+plt.show()

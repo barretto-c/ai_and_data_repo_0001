@@ -13,6 +13,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import LabelEncoder
 
+from sklearn.tree import export_text
+
 # Load dataset
 file_path = '..\SalesOpportunityDataSet.xlsx'
 data = pd.read_excel(file_path, sheet_name='SalesOpportunityDataSet')
@@ -56,6 +58,10 @@ importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importance
 importance_df = importance_df.sort_values(by='Importance', ascending=False)
 print("\nFeature Importances:")
 print(importance_df)
+
+# Print tree logic
+tree_rules = export_text(clf, feature_names=list(X.columns))
+print(tree_rules)
 
 # Optional: Plot feature importances
 import matplotlib.pyplot as plt
