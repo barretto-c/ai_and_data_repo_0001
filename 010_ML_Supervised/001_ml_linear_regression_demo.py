@@ -3,9 +3,16 @@
 # Definition of Liner Regression: A statistical method that models the relationship between a dependent variable and one or more independent variables by fitting a linear equation to observed data. 
 # It is used for predicting continuous outcomes.
 
+#Update 9/18/2025
+# Lasso (L1) gave the lowest Mean Squared Error and highest R², suggesting it’s capturing the signal more cleanly—possibly by zeroing out noisy or less relevant features.
+# Ridge (L2) also improved over plain Linear Regression, but not as dramatically.
+# L2
+# Mean Squared Error: 12.73
+# R² Score: 0.70
+
 import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
+
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error, r2_score
@@ -62,3 +69,33 @@ print(f"New Sample for Prediction: {new_sample}")
 predicted_time = model.predict(new_sample)[0]
 predicted_time = max(0, predicted_time)  # Ensure non-negative prediction
 print(f"Predicted Time to Respond: {predicted_time:.2f} hours")
+
+
+# 🔹 Ridge Regression (L2)
+ridge_model = Ridge(alpha=1.0)
+ridge_model.fit(X_train, y_train)
+ridge_pred = ridge_model.predict(X_test)
+ridge_mse = mean_squared_error(y_test, ridge_pred)
+ridge_r2 = r2_score(y_test, ridge_pred)
+print("\nRidge Regression Results:")
+print(f"Mean Squared Error: {ridge_mse:.2f}")
+print(f"R² Score: {ridge_r2:.2f}")
+
+# 🔹 Lasso Regression (L1)
+lasso_model = Lasso(alpha=0.1)
+lasso_model.fit(X_train, y_train)
+lasso_pred = lasso_model.predict(X_test)
+lasso_mse = mean_squared_error(y_test, lasso_pred)
+lasso_r2 = r2_score(y_test, lasso_pred)
+print("\nLasso Regression Results:")
+print(f"Mean Squared Error: {lasso_mse:.2f}")
+print(f"R² Score: {lasso_r2:.2f}")
+
+# 🔮 Predict using Ridge and Lasso
+ridge_time = ridge_model.predict(new_sample)[0]
+ridge_time = max(0, ridge_time)
+print(f"Predicted Time to Respond (Ridge): {ridge_time:.2f} hours")
+
+lasso_time = lasso_model.predict(new_sample)[0]
+lasso_time = max(0, lasso_time)
+print(f"Predicted Time to Respond (Lasso): {lasso_time:.2f} hours")
