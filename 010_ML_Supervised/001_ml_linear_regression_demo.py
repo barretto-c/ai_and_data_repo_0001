@@ -12,7 +12,7 @@
 
 import pandas as pd
 
-from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error, r2_score
@@ -91,7 +91,17 @@ print("\nLasso Regression Results:")
 print(f"Mean Squared Error: {lasso_mse:.2f}")
 print(f"R² Score: {lasso_r2:.2f}")
 
-# 🔮 Predict using Ridge and Lasso
+# 🔹 Elastic Net Regression (L1 + L2)
+elastic_model = ElasticNet(alpha=0.1, l1_ratio=0.5)
+elastic_model.fit(X_train, y_train)
+elastic_pred = elastic_model.predict(X_test)
+elastic_mse = mean_squared_error(y_test, elastic_pred)
+elastic_r2 = r2_score(y_test, elastic_pred)
+print("\nElastic Net Regression Results:")
+print(f"Mean Squared Error: {elastic_mse:.2f}")
+print(f"R² Score: {elastic_r2:.2f}")
+
+# 🔮 Predict using Ridge, Lasso, and Elastic Net
 ridge_time = ridge_model.predict(new_sample)[0]
 ridge_time = max(0, ridge_time)
 print(f"Predicted Time to Respond (Ridge): {ridge_time:.2f} hours")
@@ -99,3 +109,7 @@ print(f"Predicted Time to Respond (Ridge): {ridge_time:.2f} hours")
 lasso_time = lasso_model.predict(new_sample)[0]
 lasso_time = max(0, lasso_time)
 print(f"Predicted Time to Respond (Lasso): {lasso_time:.2f} hours")
+
+elastic_time = elastic_model.predict(new_sample)[0]
+elastic_time = max(0, elastic_time)
+print(f"Predicted Time to Respond (Elastic Net): {elastic_time:.2f} hours")
