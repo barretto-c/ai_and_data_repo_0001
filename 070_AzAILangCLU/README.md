@@ -51,9 +51,24 @@ This project demonstrates how to use Azure Cognitive Services (Conversational La
 1. Go to [Azure Language Studio](https://language.azure.com/).
 2. Select your subscription and the Cognitive Services account you created.
 3. Create a new CLU project:
-   - Define your schema (intents and entities).
-   - Example intents: `OrderPizza`, `CancelOrder` (add sample utterances for each intent).
-   - Example entities: `PizzaType`, `Topping`, `Size`, `Quantity` (define as lists, e.g., cheese, pepperoni, small, large).
+    - Click **New Project** and choose the "Conversational Language Understanding" project type.
+    - **Name your project** and select the language (e.g., English).
+    - **Define your schema:**
+       - **Intents:**
+          - Add intents such as `OrderPizza` and `CancelOrder`.
+          - For each intent, add several sample utterances. For example:
+             - `OrderPizza` intent: "I want a small pizza", "Order me a pepperoni pizza", "Can I get two large cheese pizzas?"
+             - `CancelOrder` intent: "Cancel my order", "I want to cancel my pizza order"
+       - **Entities:**
+          - Add entities such as `PizzaType`, `Topping`, `Size`, `Quantity`.
+          - Define entity types (e.g., as lists or prebuilt types). Example values:
+             - `PizzaType`: cheese, pepperoni, veggie
+             - `Topping`: mushrooms, olives, extra cheese
+             - `Size`: small, medium, large
+             - `Quantity`: 1, 2, 3, etc.
+    - **Label your utterances:**
+       - Highlight words or phrases in your sample utterances and assign them to the appropriate entity (e.g., "small" → `Size`, "pepperoni" → `PizzaType`).
+    - **Save your schema and utterances.**
 4. Train and deploy your project (e.g., to "production").
 
 ## 4. Train, Review, and Deploy Your CLU Model
