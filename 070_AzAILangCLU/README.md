@@ -86,6 +86,23 @@ AZURE_CLU_DEPLOYMENT=production
 python 001_LangCLUDemo.py
 ```
 
+```
+Your output should look like this
+[SDK RESPONSE]
+Query: Order me a small pizza with extra cheese and a coke
+Top Intent: OrderPizza
+Intents:
+ - OrderPizza: 0.7955833
+ - CancelOrder: 0.68590707
+ - None: 0
+Entities:
+ - Size: small (confidence: 1)
+   Extra Information:
+     - {'extraInformationKind': 'ListKey', 'key': 'small'}
+ - PizzaType: cheese (confidence: 1)
+   Extra Information:
+     - {'extraInformationKind': 'ListKey', 'key': 'cheese'}
+```
 ---
 
 For more information, see the [Azure Language documentation](https://learn.microsoft.com/azure/ai-services/language-service/).
