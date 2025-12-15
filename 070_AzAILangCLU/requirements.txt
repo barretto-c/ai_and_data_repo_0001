@@ -1,0 +1,10 @@
+azure-ai-language-conversations==1.1.0
+azure-core==1.37.0
+certifi==2025.11.12
+charset-normalizer==3.4.4
+idna==3.11
+isodate==0.7.2
+python-dotenv==1.2.1
+requests==2.32.5
+typing_extensions==4.15.0
+urllib3==2.6.2
