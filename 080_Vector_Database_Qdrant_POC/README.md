@@ -18,5 +18,23 @@ python -m pip install --upgrade pip
 1. Open a terminal in this directory.
 2. Install dependencies:
    ```
+
+## Running the Script
+
+   After installing the dependencies, you can start the script as follows:
+
+   On **Windows**:
+
+   ```
+   venv\Scripts\activate
+   python start_program.py
+   ```
+
+   On **Linux/macOS**:
+
+   ```
+   source venv/bin/activate
+   python start_program.py
+   ```
    pip install -r requirements.txt
    ```
